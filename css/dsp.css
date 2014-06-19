@@ -1,0 +1,54 @@
+body {
+  background-color: #d9edf7;
+}
+
+.nvd3 rect[height="0"] {
+  display: none !important;
+}
+
+.input-unit {
+  text-align: left;
+  padding-top: 7px;
+  padding-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.dsp-control {
+  border-color: #eee;
+}
+
+.dsp-control .panel-heading {
+  border-bottom-color: #eee;
+}
+
+.dsp-control .panel-title {
+  color: #000;
+}
+
+.container {
+  background-color: #FFF;
+}
+
+.big-chart svg {
+  height: 400px;
+}
+
+.chart svg {
+  height: 300px;
+}
+
+.spec-chart svg {
+  margin-top: 100px;
+  height: 200px;
+}
+
+#aliasing-text {
+  text-align: center;
+}
+
+.bg-info {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+}

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DSP Term Project</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!--append ‘#!watch’ to the browser URL, then refresh the page. -->
+
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="css/nv.d3.css" rel="stylesheet">
+  <link href="css/dsp.css" rel="stylesheet">
+
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
+</head>
+
+<body>
+<div class="container">
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <div class="page-header">
+        <h1>
+          DSP Term Project <small>Linear System Simulation</small> <div class="pull-right"><small></small></div>
+        </h1>
+      </div>
+    </div>
+  </div>
+  <div class="row clearfix">
+    <!-- Left Side start -->
+    <div class="col-md-8 column">
+      <div class"row clearfix">
+        <h2 class="bg-info">Original Signal</h2>
+      </div>
+
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <h3>x(t)=<span id="x_t"></span></h3>
+        </div>
+      </div>
+
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <div class="big-chart" id="graph-x_t">
+          <svg></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class"row clearfix">
+        <h2 class="bg-info">Sampling With f<sub>s</sub>=<span id="f_s_ex"></span></h2>
+      </div>
+
+      <div class="row clearfix">
+        <div class="col-md-6 column">
+          <h4>Sampling Sinusoid</h4>
+          <div class="chart" id="graph-x_n">
+            <svg></svg>
+          </div>
+        </div>
+        <div class="col-md-6 column">
+          <h4>Digital Frequency Spectrum</h4>
+          <div class="chart spec-chart" id="graph-x_n_s">
+            <svg></svg>
+          </div>
+          <div class="row clearfix">
+            <div class="col-md-offset-2 col-md-10" style="text-align:center;" id="x_n_explanation"></div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-md-offset-2 col-md-10">
+              <h3 class="text-danger" id="aliasing-text"></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <h3>x[n]=<span id="x_n"></span></h3>
+        </div>
+      </div>
+
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <div class="big-chart" id="graph-x_n2">
+          <svg></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class"row clearfix">
+        <h2 class="bg-info">Introduction of FIR Filter</h2>
+      </div>
+
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <h3>H[z]=<span id="h_z"></span></h3>
+        </div>
+      </div>
+
+      <div class="row clearfix">
+        <div class="col-md-6 column">
+          <h4>H(w) Amplitude</h4>
+          <div class="chart" id="graph-h_w_a">
+            <svg></svg>
+          </div>
+        </div>
+        <div class="col-md-6 column">
+          <h4>H(w) phase</h4>
+          <div class="chart" id="graph-h_w_p">
+            <svg></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class"row clearfix">
+        <h2 class="bg-info">Filtered Signal</h2>
+      </div>
+
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <h3>y[n]=<span id="y_n"></span></h3>
+        </div>
+      </div>
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <div class="big-chart" id="graph-y_n">
+            <svg></svg>
+          </div>
+        </div>
+        <div class="col-md-6 column">
+        </div>
+      </div>
+
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <h3>Compare x[n] with y[n]</h3>
+        </div>
+      </div>    
+      <div class="row clearfix">
+        <div class="col-md-6 column">
+          <h4>From x[n]</h4>
+          <div class="chart" id="graph-h_n_x">
+            <svg></svg>
+          </div>
+        </div>
+        <div class="col-md-6 column">
+          <h4>To y[n]</h4>
+          <div class="chart" id="graph-h_n_y">
+            <svg></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class"row clearfix">
+        <h2 class="bg-info">Reconstruction</h2>
+      </div>
+
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <h3>y(t)=<span id="y_t"></span></h3>
+        </div>
+      </div>
+
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <div class="big-chart" id="graph-y_t2">
+            <svg></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <h3>Compare x(t) with y(t)</h3>
+        </div>
+      </div>   
+
+      <div class="row clearfix">
+        <div class="col-md-6 column">
+          <h4>From x(t)</h4>
+          <div class="chart" id="graph-x_t2">
+            <svg></svg>
+          </div>
+        </div>
+        <div class="col-md-6 column">
+          <h4>To y(t)</h4>
+          <div class="chart" id="graph-y_t">
+            <svg></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Left Side End -->
+
+    <!-- Right Side start -->
+    <div class="col-md-4 column">
+      <div class="row clearfix">
+        <div data-spy="affix" style="width:27%;">
+          <div class="dsp-control panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Control Panel</h3>
+            </div>
+            <div class="panel-body">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label for="amplitude" class="col-sm-5 control-label">Amplitude</label>
+                <div class="col-sm-7">
+                  <input type="text" class="form-control" id="amplitude" value="1">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="frequency" class="col-sm-5 control-label">Frequency</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="frequency" value="1">
+                </div>
+                <label class="col-sm-2 input-unit">Hz</label>
+              </div>
+              <div class="form-group">
+                <label for="phase" class="col-sm-5 control-label">phase</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="phase" value="0">
+                </div>
+                <label class="col-sm-2 input-unit">π</label>
+              </div>
+              <div class="form-group">
+                <label for="dc-component" class="col-sm-5 control-label">DC Component</label>
+                <div class="col-sm-7">
+                  <input type="text" class="form-control" id="dc" value="0">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="sampling-frequency" class="col-sm-5 control-label">Sampling Frequency</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="sampling-frequency" value="10">
+                </div>
+                <label class="col-sm-2 input-unit">Hz</label>
+              </div>
+              <div class="form-group">
+                <label for="sampling-frequency" class="col-sm-5 control-label">FIR Filter b<sub>n</sub></label>
+                <div class="col-sm-7">
+                  <input type="text" class="form-control" id="filter-n" value="0,0,1">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-5 col-sm-7">
+                  <button type="submit" class="btn btn-primary" id="x_t-update">Apply</button>
+                </div>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Right Side End -->
+  </div>
+</div>
+
+  <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="js/d3.v3.js"></script>
+  <script type="text/javascript" src="js/nv.d3.js"></script>
+  <script type="text/javascript" src="js/dsp.js"></script>
+  <script type="text/javascript" src="js/populateData.js"></script>
+  <script type="text/javascript" src="js/x_t.js"></script>
+  <script type="text/javascript" src="js/x_n.js"></script>
+  <script type="text/javascript" src="js/h_w.js"></script>
+  <script type="text/javascript" src="js/h_n.js"></script>
+  <script type="text/javascript" src="js/y_t.js"></script>
+  <script type="text/javascript" src="js/y_n.js"></script>
+  <script type="text/javascript" src="js/filter.js"></script>
+  <script type="text/javascript" src="js/test.js"></script>
+</body>
+</html>
